@@ -43,8 +43,8 @@ const AlignChild = (props: IAlignChildProps) => {
 };
 
 export default class Align extends React.Component<IAlignProps, IAlignState> {
-  constructor() {
-    super();
+  constructor(props: IAlignProps) {
+    super(props);
     this.state = {
       widthArray: [],
       maxColumnsLength : 0

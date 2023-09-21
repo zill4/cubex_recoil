@@ -32,13 +32,13 @@ class Stepper extends React.Component<IStepperProps, any>{
              )
          } else {
              itemArray.push(
-                 <Shrink key={index} opacity={50} scale={1} if={index > props.stepIndex}>
+                 <Shrink key={index} opacity={50} scale={1} if={index as number > props.stepIndex}>
                      <div>
                          {item} 
                      </div>
                  </Shrink>,
-                 <Shrink key={index} opacity={50} scale={1} if={index > props.stepIndex}>
-                     <div className={index > props.stepIndex - 1 ? "flex-step e-gray" : "flex-step"}>
+                 <Shrink key={index} opacity={50} scale={1} if={index as number > props.stepIndex}>
+                     <div className={index as number > props.stepIndex - 1 ? "flex-step e-gray" : "flex-step"}>
                      </div>
                  </Shrink>
              )

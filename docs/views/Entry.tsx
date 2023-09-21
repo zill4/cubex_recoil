@@ -31,8 +31,8 @@ import SampleData from './tutorial/SampleData';
 
 export default class App extends React.Component<any, any> {
 
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
 
     this.state = {
       slideIndex: 0,

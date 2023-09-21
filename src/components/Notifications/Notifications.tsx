@@ -22,8 +22,8 @@ export interface INotificationState {
 }
 
 class Notification extends React.Component<INotificationProps, INotificationState>{
-    constructor() {
-        super();
+    constructor(props: INotificationProps) {
+        super(props);
         this.state = {
             view: 'visible'
         };

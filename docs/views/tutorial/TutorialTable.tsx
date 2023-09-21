@@ -66,8 +66,8 @@ const TableProperties = [
 ]
 
 export default class TutorialTable extends React.Component<any,any>{
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
 
     this.state = {
       showProps : true,

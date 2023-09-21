@@ -1,56 +1,43 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-    devtool: 'eval',
+    mode: 'production',
     entry: {
         'styles': path.resolve(__dirname, 'docs/styles.ts'),
         'docs': path.resolve(__dirname, 'docs/index.tsx')
     },
     output: {
-        library: '[name]',
-        libraryTarget: 'var',
+        library: {
+            name: '[name]',
+            type: 'var'
+        },
         filename: './bundle/[name].js'
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: false,
-            compress: {
-                warnings: true
-            }
-        }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        }),
-        new ExtractTextPlugin("./bundle/[name].css")
-    ],
+    optimization: {
+        minimize: true,
+    },
     module: {
-        loaders: [{
-            test: /\.tsx?$/,
-            loader: 'ts-loader',
-            include: [/src/, /docs/]
-        }, {
-            test: /\.less$/,
-            loader: ExtractTextPlugin.extract({
-                fallback: 'style-loader',
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                include: [/src/, /docs/]
+            },
+            {
+                test: /\.json$/,
+                use: 'json-loader'
+            },
+            {
+                test: /\.less$/,
                 use: [
-                    'css-loader',
-                    'less-loader'
+                  'style-loader', // This injects styles into the DOM
+                  'css-loader',   // This interprets @import and url() like import/require() and will resolve them
+                  'less-loader'   // This compiles Less to CSS
                 ]
-            })
-        }, {
-            test: /\.json$/,
-            loader: 'json-loader'
-        }]
+              }
+        ]
     },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".js", ".ts", ".tsx"]
-    },
-    node: {
-        fs: "empty"
     }
 };

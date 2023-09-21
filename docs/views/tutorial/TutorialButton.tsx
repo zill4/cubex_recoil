@@ -126,8 +126,8 @@ const ButtonProperties = [
 ]
 
 export default class TutorialButton extends React.Component<any,any>{
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
 
     this.state = {
       showProps : true,

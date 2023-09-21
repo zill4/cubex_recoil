@@ -48,8 +48,8 @@ const EmergeProperties = [
 ]
 
 export default class TutorialEmerge extends React.Component<any,any>{
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
 
     this.state = {
       showProps : true,

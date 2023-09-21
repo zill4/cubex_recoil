@@ -17,8 +17,8 @@ const CalendarProperties = [
 ]
 
 export default class TutorialCalendar extends React.Component<any,any>{
-  constructor() {
-    super();
+  constructor(props: any) {
+    super(props);
 
     this.state = {
       showProps : true,

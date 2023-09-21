@@ -92,21 +92,20 @@ export default class Input extends React.Component<IInputProps, IInputState>{
         }
     }
     public componentWillUnmount() {
-        let inputDOM = ReactDOM.findDOMNode<HTMLInputElement>(this.refs['refInput']);
+        let inputDOM = ReactDOM.findDOMNode(this.refs['refInput']) as HTMLInputElement;
         inputDOM.blur();
     }
     public focusOnMount() {
         const self = this;
-        let inputDOM = ReactDOM.findDOMNode<HTMLInputElement>(this.refs['refInput']);
-        let focusDelay;
-
-        focusDelay = self.props.focusDelay || 400;
-
-        (function (inputDOM) {
+        let inputDOM = ReactDOM.findDOMNode(this.refs['refInput']) as HTMLInputElement; // Type assertion here
+    
+        let focusDelay = self.props.focusDelay || 400;
+    
+        if (inputDOM) {
             setTimeout(function () {
                 inputDOM.focus();
             }, focusDelay);
-        }(inputDOM));
+        }
     }
     public focus(e: any) {
         this.setState({
@@ -114,20 +113,25 @@ export default class Input extends React.Component<IInputProps, IInputState>{
         });
     }
     public blur(event: React.MouseEvent<HTMLInputElement>) {
-        let inputDOM = this.refs['refInput'];
-        let value = (event.target as HTMLInputElement).value;
-        this.setState({
-            checked: ReactDOM.findDOMNode<HTMLInputElement>(inputDOM).value !== '' ? true : false,
-            value: value
-        }, () => {
-            this.props.onBlur ? this.props.onBlur(value, event) : null;
-        });
+        let inputDOM = this.refs['refInput'] as HTMLInputElement; // Type assertion here
+
+        if (inputDOM) {
+            let value = inputDOM.value;
+            this.setState({
+                checked: value !== '' ? true : false,
+                value: value
+            }, () => {
+                this.props.onBlur ? this.props.onBlur(value, event) : null;
+            });
+        }
     }
     public mouseOut() {
-        let inputDOM = this.refs['refInput'];
-        this.setState({
-            mouseOut: ReactDOM.findDOMNode<HTMLInputElement>(inputDOM).onmouseout ? false : true
-        });
+        let inputDOM = this.refs['refInput'] as HTMLInputElement; // Type assertion here
+        if (inputDOM) {
+            this.setState({
+                mouseOut: inputDOM.onmouseout ? false : true
+            });
+        }
     }
     public onChange(event: React.KeyboardEvent<HTMLInputElement>) {
         // ts issues
@@ -135,7 +139,7 @@ export default class Input extends React.Component<IInputProps, IInputState>{
     }
 
     limit(max: number) {
-        let inputDOM = ReactDOM.findDOMNode<HTMLInputElement>(this.refs['refInput']);
+        let inputDOM = ReactDOM.findDOMNode(this.refs['refInput']) as HTMLInputElement;
         let maxLength = max - 1;
         if (inputDOM.value.length > maxLength) {
             inputDOM.value = inputDOM.value.substr(0, maxLength);

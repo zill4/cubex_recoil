@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-import 'intersection-observer';
-import Observer from 'react-intersection-observer';
+import { InView } from 'react-intersection-observer';
 
 export interface IEmergeProps {
   if? : boolean;
@@ -12,6 +11,7 @@ export interface IEmergeProps {
   overflow? : boolean;
   className? : string;
   style? : Array<string>;
+  children?: React.ReactNode;
 }
 
 export default class Emerge extends React.Component<IEmergeProps, {}> {
@@ -74,10 +74,9 @@ export default class Emerge extends React.Component<IEmergeProps, {}> {
       });
 
       return (
-        <Observer>
-        {(inView)=> inView ? <span className={emergeClass} ref="element">{newChildren}</span> : null}
-  </Observer>
-        
+<InView>
+  {({ inView, ref }) => inView ? <span className={emergeClass} ref={ref}>{newChildren}</span> : null}
+</InView>
       );
     }
 }

@@ -105,7 +105,7 @@ export default class Button extends React.Component<IButtonProps, IButtonState>{
      const context = this;
      const props = context.props;
      let state = context.state;
-     const refButton = ReactDOM.findDOMNode<HTMLElement>(context.refs["button"]);
+     const refButton = ReactDOM.findDOMNode(context.refs["button"]) as HTMLElement;
      context.setState({
        showShortcut : e.shiftKey ? true : false
      })
@@ -126,7 +126,8 @@ export default class Button extends React.Component<IButtonProps, IButtonState>{
     const self = this;
     const props = self.props;
 
-    let buttonType : string;
+    let buttonType : "submit" |  "reset" | "button";
+    ;
 
     let buttonClass = classNames(
       'r-Button',

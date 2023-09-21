@@ -30,6 +30,7 @@ export interface ILayerProps extends IRecoil{
   flexCenter?: boolean;
   onScroll?: any;
   id?: string;
+  children?: React.ReactNode;
 }
 
 export class Layer extends React.Component<ILayerProps, any> {

@@ -11,6 +11,7 @@ export interface IRecoilProps {
     scrollY? : boolean;
 
     onMobile? : any;
+    children?: React.ReactNode;
 }
 
 function delegate(el : HTMLElement, evt : any, sel : any, handler : any) {

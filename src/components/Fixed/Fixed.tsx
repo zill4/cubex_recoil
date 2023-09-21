@@ -12,8 +12,8 @@ export default class Fixed extends React.Component<IFixedProps, any> {
         fixedNode: (HTMLElement);
     }
 
-    constructor () {
-        super();
+    constructor (props: IFixedProps) {
+        super(props);
         this.state = {
             default: 0,
             node: null,
