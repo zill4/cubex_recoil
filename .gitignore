@@ -4,6 +4,5 @@ npm-debug.log
 typings
 bundle/
 
-*.d.ts
 *.log
 *.tgz
