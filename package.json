@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "prepublishOnly": "rimraf ./dist && tsc --declaration",
-    "tsc": "tsc",
+    "tsc": "tsc --declaration",
     "build": "webpack --config webpack.config.js --progress && tsc --declaration",
     "watch": "webpack --config webpack.config.js --watch --progress",
     "watch-link": "tsc --watch --declaration"
